@@ -16,6 +16,13 @@ public class Vertex<E> {
 	public void addEdge(Edge edge){
 		adjacency.add(edge);
 	}
-
+	
+	public E getElement() {
+		return element;
+	}
+	
+	public void setElement(E element) {
+		this.element = element;
+	}
 
 }
