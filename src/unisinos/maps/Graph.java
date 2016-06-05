@@ -1,17 +1,122 @@
 package unisinos.maps;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
-public class Graph<E> {
-	//
-	private ArrayList<Vertex> vertex = new ArrayList<Vertex>();
+public class Graph<E>{
 	
-	public void insertVertex(E element){
-		Vertex temp = new Vertex(element);
-		vertex.add((Vertex) element);
+	private LinkedList<Edge> edge;
+	private LinkedList<Vertex> vertex;
+	
+	
+	Graph(){
+		edge = new LinkedList<Edge>();
+		vertex = new LinkedList<Vertex>();
 	}
 	
+	public Vertex[] endVertices(Edge e){
+		Edge tempEdge = edge.get(edge.indexOf(e));
+		Vertex[] tempVertex = new Vertex[2];
+		tempVertex[0] = tempEdge.getVertex1();
+		tempVertex[1] = tempEdge.getVertex2();
+		return tempVertex;
+	}
 	
+	public Vertex opposite(Vertex v,Edge e){
+		Edge temp = edge.get(edge.indexOf(e));
+		if (temp.getVertex1().equals(v)){
+			return temp.getVertex2();
+		}else{
+			return temp.getVertex1();
+		}
+	}
 	
+	public boolean areAdjacent(Vertex v, Vertex w){
+		Vertex temp = vertex.get(vertex.indexOf(v));
+		for(int i = 0; i < temp.getAdjacency().size(); i++){
+			if (w.equals(temp.getAdjacency().get(i))){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public <E> void replaceEdge(Edge e, E element){
+		edge.get(edge.indexOf(e)).setElement(element);
+	}
+	
+	public <E> void replaceVertex(Vertex v, E element){
+		int index = vertex.indexOf(v);
+		Vertex oldVertex = vertex.get(index);
+		vertex.get(vertex.indexOf(v)).setElement(element);
+		Vertex newVertex = vertex.get(index); 
+		for(int i = 0; i < vertex.get(index).getAdjacency().size(); i++){
+				Vertex tempVertex = (Vertex) vertex.get(index).getAdjacency().get(i);
+				int temp = vertex.get(vertex.indexOf(tempVertex)).getAdjacency().indexOf(oldVertex);
+				vertex.get(vertex.indexOf(tempVertex)).getAdjacency().remove(oldVertex);
+				vertex.get(vertex.indexOf(tempVertex)).getAdjacency().add(newVertex);
+		}
+	}
+	
+	public Vertex insertVertex(E element){
+		Vertex newVertex = new Vertex(element);
+		vertex.add(newVertex);
+		return vertex.get(vertex.indexOf(newVertex));
+	}
+	
+	public Edge insertEdge(Vertex vertex1, Vertex vertex2, E element){
+		Edge newEdge = new Edge(vertex1, vertex2, 0,element);
+		edge.add(newEdge);
+		vertex.get(vertex.indexOf(vertex1)).getAdjacency().add(vertex2);
+		vertex.get(vertex.indexOf(vertex2)).getAdjacency().add(vertex1);
+		return edge.get(edge.indexOf(newEdge));
+	}
+	
+	public E removeEdge(Edge e){
+		Vertex[] endVertices = endVertices(e);
+		E element = (E) edge.get(edge.indexOf(e)).getElement();
+		edge.remove(e);
+		vertex.get(vertex.indexOf(endVertices[0])).getAdjacency().remove(endVertices[1]);
+		vertex.get(vertex.indexOf(endVertices[1])).getAdjacency().remove(endVertices[0]);
+		return element;
+	}
+	
+	public E removeVertex(Vertex v){
+		Vertex removed = vertex.get(vertex.indexOf(v));
+		LinkedList<Edge> edges = new LinkedList();
+		edges = findEdges(v);
+		for (int i=0; i < edges.size(); i++){
+			removeEdge(edges.get(i));
+		}
+		vertex.remove(v);
+		return (E) removed.getElement();
+	}
+
+	public LinkedList<Edge> getEdge() {
+		return edge;
+	}
+
+	public LinkedList<Vertex> getVertex() {
+		return vertex;
+	}
+	
+	public LinkedList<Edge> findEdges(Vertex v){
+		LinkedList<Edge> edges = new LinkedList();
+		for (int i=0; i<edge.size(); i++){
+			if (edge.get(i).getVertex1().equals(v)){
+				edges.add(edge.get(i));
+			}else if (edge.get(i).getVertex2().equals(v)){
+				edges.add(edge.get(i));
+			}
+		}
+		return edges;
+	}
+	
+	public E edgeValue(Edge e){
+		return (E) edge.get(edge.indexOf(e)).getElement();
+	}
+	
+	public E vertexValue(Edge e){
+		return (E) vertex.get(vertex.indexOf(e)).getElement();
+	}
 	
 }
