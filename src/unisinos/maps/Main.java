@@ -8,7 +8,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		Graph teste = new Graph();
-		
+		/*
 		String vertex1E = "vertex1";
 		String vertex2E = "vertex2";
 		String vertex3E = "vertex3";
@@ -64,6 +64,35 @@ public class Main {
 			System.out.println(temp.getElement().toString());
 			System.out.println("Adjacency: "+temp.getAdjacency().get(0));
 		}
+		*/
+		
+		Vertex vertexA = teste.insertVertex("Vertex a");
+		Vertex vertexB = teste.insertVertex("Vertex b");
+		Vertex vertexC = teste.insertVertex("Vertex c");
+		Vertex vertexD = teste.insertVertex("Vertex d");
+		Vertex vertexE = teste.insertVertex("Vertex e");
+		Vertex vertexF = teste.insertVertex("Vertex f");
+		Vertex vertexG = teste.insertVertex("Vertex g");
+		Vertex vertexH = teste.insertVertex("Vertex h");
+		Vertex vertexI = teste.insertVertex("Vertex i");
+		
+		Edge edge1 = teste.insertEdge(vertexA, vertexB, "Edge1", 4);
+		Edge edge2 = teste.insertEdge(vertexA, vertexH, "Edge2", 8);
+		Edge edge3 = teste.insertEdge(vertexB, vertexC, "Edge3", 8);
+		Edge edge4 = teste.insertEdge(vertexB, vertexH, "Edge4", 11);
+		Edge edge5 = teste.insertEdge(vertexC, vertexD, "Edge5", 7);
+		Edge edge6 = teste.insertEdge(vertexC, vertexF, "Edge6", 4);
+		Edge edge7 = teste.insertEdge(vertexC, vertexI, "Edge7", 2);
+		Edge edge8 = teste.insertEdge(vertexD, vertexE, "Edge8", 9);
+		Edge edge9 = teste.insertEdge(vertexD, vertexF, "Edge9", 14);
+		Edge edge10 = teste.insertEdge(vertexE, vertexF, "Edge10", 10);
+		Edge edge11 = teste.insertEdge(vertexF, vertexG, "Edge11", 2);
+		Edge edge12 = teste.insertEdge(vertexG, vertexH, "Edge12", 1);
+		Edge edge13 = teste.insertEdge(vertexG, vertexI, "Edge13", 6);
+		Edge edge14 = teste.insertEdge(vertexH, vertexI, "Edge14", 7);
+			
+		
 	}
-
+	
+		
 }

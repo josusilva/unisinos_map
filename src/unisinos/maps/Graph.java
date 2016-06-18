@@ -71,6 +71,14 @@ public class Graph<E>{
 		return edge.get(edge.indexOf(newEdge));
 	}
 	
+	public Edge insertEdge(Vertex vertex1, Vertex vertex2, E element, int weigth){
+		Edge newEdge = new Edge(vertex1, vertex2, weigth,element);
+		edge.add(newEdge);
+		vertex.get(vertex.indexOf(vertex1)).getAdjacency().add(vertex2);
+		vertex.get(vertex.indexOf(vertex2)).getAdjacency().add(vertex1);
+		return edge.get(edge.indexOf(newEdge));
+	}
+	
 	public E removeEdge(Edge e){
 		Vertex[] endVertices = endVertices(e);
 		E element = (E) edge.get(edge.indexOf(e)).getElement();

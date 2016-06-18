@@ -1,11 +1,11 @@
 package unisinos.maps;
 
-public class Edge<E> {
+public class Edge<E> implements Comparable{
 	 
-	Vertex vertex1;
-	Vertex vertex2;
+	private Vertex vertex1;
+	private Vertex vertex2;
 	private int weigth;
-	E element;
+	private E element;
 	
 	public Edge(Vertex vertex1, Vertex vertex2, int weigth, E element) {
 		this.vertex1 = vertex1;
@@ -83,6 +83,15 @@ public class Edge<E> {
 			return false;
 		return true;
 	}
+	
+	public int compareTo(Object o) {
+        if (this.weigth == ((Edge)o).getWeigth())
+            return 0;
+        else if (this.weigth > ((Edge)o).getWeigth())
+            return 1;
+        else
+            return -1;
+    }
 
 	
 	
