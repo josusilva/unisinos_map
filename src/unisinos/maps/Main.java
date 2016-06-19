@@ -90,7 +90,12 @@ public class Main {
 		Edge edge12 = teste.insertEdge(vertexG, vertexH, "Edge12", 1);
 		Edge edge13 = teste.insertEdge(vertexG, vertexI, "Edge13", 6);
 		Edge edge14 = teste.insertEdge(vertexH, vertexI, "Edge14", 7);
-			
+		
+		Prim prim = new Prim(teste);
+		
+		prim.MSTPrim();
+		
+		System.out.println(prim.weight_route());
 		
 	}
 	

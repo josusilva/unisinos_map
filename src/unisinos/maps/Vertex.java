@@ -7,6 +7,7 @@ public class Vertex<E> {
 	
 	private E element;
 	private LinkedList<Vertex> adjacency;
+	private char color = 'w';
 	
 	public Vertex(E element) {
 		this.element = element;
@@ -23,6 +24,19 @@ public class Vertex<E> {
 
 	public void setElement(E element) {
 		this.element = element;
+	}
+	
+	
+	public char getColor() {
+		return color;
+	}
+
+	public void setColor(char color) {
+		this.color = color;
+	}
+
+	public void setAdjacency(LinkedList<Vertex> adjacency) {
+		this.adjacency = adjacency;
 	}
 
 	public LinkedList<Vertex> getAdjacency() {
