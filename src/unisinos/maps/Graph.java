@@ -40,14 +40,14 @@ public class Graph<E>{
 		return false;
 	}
 	
-	public <E> void replaceEdge(Edge e, E element){
-		edge.get(edge.indexOf(e)).setElement(element);
+	public <E> void replaceEdge(Edge e, String dislocate){
+		edge.get(edge.indexOf(e)).setDislocate(dislocate);
 	}
 	
-	public <E> void replaceVertex(Vertex v, E element){
+	public <E> void replaceVertex(Vertex v, Point point){
 		int index = vertex.indexOf(v);
 		Vertex oldVertex = vertex.get(index);
-		vertex.get(vertex.indexOf(v)).setElement(element);
+		vertex.get(vertex.indexOf(v)).setPoint(point);
 		Vertex newVertex = vertex.get(index); 
 		for(int i = 0; i < vertex.get(index).getAdjacency().size(); i++){
 				Vertex tempVertex = (Vertex) vertex.get(index).getAdjacency().get(i);
@@ -57,22 +57,22 @@ public class Graph<E>{
 		}
 	}
 	
-	public Vertex insertVertex(E element){
-		Vertex newVertex = new Vertex(element);
+	public Vertex insertVertex(Point point){
+		Vertex newVertex = new Vertex(point);
 		vertex.add(newVertex);
 		return vertex.get(vertex.indexOf(newVertex));
 	}
 	
-	public Edge insertEdge(Vertex vertex1, Vertex vertex2, E element){
-		Edge newEdge = new Edge(vertex1, vertex2, 0,element);
+	public Edge insertEdge(Vertex vertex1, Vertex vertex2, String dislocate){
+		Edge newEdge = new Edge(vertex1, vertex2, 0,dislocate);
 		edge.add(newEdge);
 		vertex.get(vertex.indexOf(vertex1)).getAdjacency().add(vertex2);
 		vertex.get(vertex.indexOf(vertex2)).getAdjacency().add(vertex1);
 		return edge.get(edge.indexOf(newEdge));
 	}
 	
-	public Edge insertEdge(Vertex vertex1, Vertex vertex2, E element, int weigth){
-		Edge newEdge = new Edge(vertex1, vertex2, weigth,element);
+	public Edge insertEdge(Vertex vertex1, Vertex vertex2, String dislocate, int weigth){
+		Edge newEdge = new Edge(vertex1, vertex2, weigth,dislocate);
 		edge.add(newEdge);
 		vertex.get(vertex.indexOf(vertex1)).getAdjacency().add(vertex2);
 		vertex.get(vertex.indexOf(vertex2)).getAdjacency().add(vertex1);
@@ -81,14 +81,14 @@ public class Graph<E>{
 	
 	public E removeEdge(Edge e){
 		Vertex[] endVertices = endVertices(e);
-		E element = (E) edge.get(edge.indexOf(e)).getElement();
+		E element = (E) edge.get(edge.indexOf(e)).getDislocate();
 		edge.remove(e);
 		vertex.get(vertex.indexOf(endVertices[0])).getAdjacency().remove(endVertices[1]);
 		vertex.get(vertex.indexOf(endVertices[1])).getAdjacency().remove(endVertices[0]);
 		return element;
 	}
 	
-	public E removeVertex(Vertex v){
+	public Point removeVertex(Vertex v){
 		Vertex removed = vertex.get(vertex.indexOf(v));
 		LinkedList<Edge> edges = new LinkedList();
 		edges = findEdges(v);
@@ -96,7 +96,7 @@ public class Graph<E>{
 			removeEdge(edges.get(i));
 		}
 		vertex.remove(v);
-		return (E) removed.getElement();
+		return removed.getPoint();
 	}
 
 	public LinkedList<Edge> getEdge() {
@@ -119,12 +119,23 @@ public class Graph<E>{
 		return edges;
 	}
 	
-	public E edgeValue(Edge e){
-		return (E) edge.get(edge.indexOf(e)).getElement();
+	public String edgeValue(Edge e){
+		return edge.get(edge.indexOf(e)).getDislocate();
 	}
 	
-	public E vertexValue(Edge e){
-		return (E) vertex.get(vertex.indexOf(e)).getElement();
+	public Point vertexValue(Edge e){
+		return vertex.get(vertex.indexOf(e)).getPoint();
 	}
 	
+	public Vertex findVertex(double lat, double lng){
+		Vertex v = null;
+		
+		for (Vertex v1 : vertex) {
+			if(v1.getPoint().getLat() == lat && v1.getPoint().getLng() == lng){
+				v = v1;
+			}
+		}
+		
+		return v;
+	}
 }

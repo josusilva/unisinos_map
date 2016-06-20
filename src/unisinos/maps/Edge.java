@@ -5,13 +5,13 @@ public class Edge<E> implements Comparable{
 	private Vertex vertex1;
 	private Vertex vertex2;
 	private int weigth;
-	private E element;
+	private String dislocate;	
 	
-	public Edge(Vertex vertex1, Vertex vertex2, int weigth, E element) {
+	public Edge(Vertex vertex1, Vertex vertex2, int weigth, String d) {
 		this.vertex1 = vertex1;
 		this.vertex2 = vertex2;
-		this.weigth = weigth;
-		this.element = element;
+		this.weigth = weigth;		
+		this.dislocate = d;
 	}
 
 	public Vertex getVertex1() {
@@ -37,13 +37,13 @@ public class Edge<E> implements Comparable{
 	public void setWeigth(int weigth) {
 		this.weigth = weigth;
 	}
-
-	public E getElement() {
-		return element;
+	
+	public String getDislocate(){
+		return dislocate;
 	}
-
-	public void setElement(E element) {
-		this.element = element;
+	
+	public void setDislocate(String d){
+		this.dislocate = d;
 	}
 
 	@Override
@@ -92,10 +92,4 @@ public class Edge<E> implements Comparable{
         else
             return -1;
     }
-
-	
-	
-	
-	
-	
 }

@@ -3,14 +3,14 @@ package unisinos.maps;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Vertex<E> {
+public class Vertex {
 	
-	private E element;
+	private Point point;
 	private LinkedList<Vertex> adjacency;
 	private char color = 'w';
 	
-	public Vertex(E element) {
-		this.element = element;
+	public Vertex(Point point) {
+		this.point = point;
 		adjacency = new LinkedList<Vertex>();
 	}
 	
@@ -18,12 +18,12 @@ public class Vertex<E> {
 		adjacency.add(adj);
 	}
 
-	public E getElement() {
-		return element;
+	public Point getPoint() {
+		return point;
 	}
 
-	public void setElement(E element) {
-		this.element = element;
+	public void setPoint(Point point) {
+		this.point = point;
 	}
 	
 	
@@ -47,7 +47,7 @@ public class Vertex<E> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((element == null) ? 0 : element.hashCode());
+		result = prime * result + ((point == null) ? 0 : point.hashCode());
 		return result;
 	}
 
@@ -55,7 +55,7 @@ public class Vertex<E> {
 	
 	
 	public String toString(){
-		return element.toString();
+		return point.toString();
 	}
 
 	@Override
@@ -67,10 +67,10 @@ public class Vertex<E> {
 		if (getClass() != obj.getClass())
 			return false;
 		Vertex other = (Vertex) obj;
-		if (element == null) {
-			if (other.element != null)
+		if (point == null) {
+			if (other.point != null)
 				return false;
-		} else if (!element.equals(other.element))
+		} else if (!point.equals(other.point))
 			return false;
 		return true;
 	}
