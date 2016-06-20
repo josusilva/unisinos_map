@@ -244,11 +244,6 @@
 			{
 				"type": "Feature",
 				"geometry": {"type": "Point", "coordinates": [-51.156905, -29.796129]},
-				"properties": {"tipo": "banheiro", "id": "49"}
-			},
-			{
-				"type": "Feature",
-				"geometry": {"type": "Point", "coordinates": [-51.156905, -29.796129]},
 				"properties": {"tipo": "banheiro", "id": "50"}
 			},
 			{
