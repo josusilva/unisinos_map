@@ -12,26 +12,28 @@ public class Prim<E> {
 	
 	public Prim(Graph graph){
 		prim = graph;
-		vertex = new LinkedList<Vertex>();
 		prim_edges = new LinkedList<Edge>();
 		prim_vertex = new LinkedList<Vertex>();
+	}
+	
+	public LinkedList getPrimVertex(){
+		return prim_vertex;
 	}
 	
 	public LinkedList getPrimEdges(){
 		return prim_edges;
 	}
 	
-	public int weight_route(){
-		int weight = 0;
-		for (int i = 0; i < prim_edges.size(); i++){
-			weight = weight + prim_edges.get(i).getWeigth();
+	public double weight_route(){
+		double weight = 0;
+		for (double i = 0; i < prim_edges.size(); i++){
+			weight = weight + prim_edges.get((int) i).getWeigth();
 		}
 		return weight;
 	}
 	
 	public void MSTPrim(){
-		vertex = prim.getVertex();
-		System.out.println("Tamanho lista vertex: "+vertex.size());
+		vertex = new LinkedList<Vertex>(prim.getVertex());
 		Vertex current_vertex = vertex.removeFirst();
 		prim_vertex.add(current_vertex);
 		LinkedList<Edge> current_vertex_edges = prim.findEdges(current_vertex);
@@ -45,7 +47,6 @@ public class Prim<E> {
 		for (int j = 1; j < current_vertex_edges.size(); j++ ){
 			if (less.getWeigth()>current_vertex_edges.get(j).getWeigth()){
 				less = current_vertex_edges.get(j);
-				System.out.println(current_vertex.toString());
 				Vertex new_prim;
 				if (current_vertex.equals(less.getVertex1())){
 					new_prim_vertex = less.getVertex2();
@@ -59,9 +60,7 @@ public class Prim<E> {
 		prim_edges.add(less);
 		prim_vertex.add(new_prim_vertex);
 		vertex.remove(new_prim_vertex);
-		int j = 0;
 		while(!vertex.isEmpty()){
-			System.out.println("Laço: "+j);
 			less = null; 
 			for(int i = 0; i < prim_vertex.size(); i++){
 				current_vertex = prim_vertex.get(i);
@@ -100,8 +99,6 @@ public class Prim<E> {
 			vertex.remove(new_prim_vertex);
 			prim_edges.add(less);
 			prim_vertex.add(new_prim_vertex);
-			j++;
-			System.out.println("Tamanho lista vertex: "+vertex.size());
 		}
 	}
 }

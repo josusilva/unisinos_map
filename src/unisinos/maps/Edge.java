@@ -4,7 +4,7 @@ public class Edge<E> implements Comparable{
 	 
 	private Vertex vertex1;
 	private Vertex vertex2;
-	private int weigth;
+	private double weigth;
 	private String dislocate;	
 	
 	public Edge(Vertex vertex1, Vertex vertex2, int weigth, String d) {
@@ -30,12 +30,12 @@ public class Edge<E> implements Comparable{
 		this.vertex2 = vertex2;
 	}
 
-	public int getWeigth() {
+	public double getWeigth() {
 		return weigth;
 	}
 
-	public void setWeigth(int weigth) {
-		this.weigth = weigth;
+	public void setWeigth(double d) {
+		this.weigth = d;
 	}
 	
 	public String getDislocate(){
@@ -58,8 +58,16 @@ public class Edge<E> implements Comparable{
 	@Override
 	
 	
-	public String toString(){
-		return vertex1.toString()+"-----"+vertex2.toString();
+	public String toString(){ 
+		String edge = vertex1.getPoint().getId()+","
+					+" tipo="+vertex1.getPoint().getType()+", "
+					+vertex2.getPoint().getId()+","
+					+" tipo="+vertex2.getPoint().getType()+", "
+					+" deslocamento= "+dislocate+","
+					+" distance= "+weigth;
+		
+		
+		return edge;
 	}
 
 	@Override
