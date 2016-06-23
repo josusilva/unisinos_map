@@ -138,13 +138,16 @@ public class Graph<E>{
 		
 		return v;
 	}
+	
+	public Vertex getVertexById(int id){				
+		return vertex.stream().filter(x -> x.getPoint().getId() == id).findFirst().get();
+	}
+	
 	/*
 	public Vertex findVertex(double lat, double lng){				
 		return vertex.stream().filter(x -> x.getPoint().getLat() == lat && x.getPoint().getLng() == lng).findFirst().get();
 	}
 	
-	public Vertex getVertexById(int id){				
-		return vertex.stream().filter(x -> x.getPoint().getId() == id).findFirst().get();
-	}
+	
 	*/
 }

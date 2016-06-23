@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +46,7 @@ public class Main {
 					JsonNode array = geo.get("coordinates");
 					Vertex v1 = graph.findVertex(array.get(1).get(1).asDouble(), array.get(1).get(0).asDouble());
 					Vertex v2 = graph.findVertex(array.get(0).get(1).asDouble(), array.get(0).get(0).asDouble());
-					Edge edge = new Edge(v1, v2, prop.get("distance").asInt(), prop.get("deslocamento").asText());
+					//Edge edge = new Edge(v1, v2, prop.get("distance").asInt(), prop.get("deslocamento").asText());
 					graph.insertEdge(v1, v2, prop.get("deslocamento").asText());
 				}
 			}
@@ -88,6 +89,16 @@ public class Main {
 						System.out.println("Vai ser preciso um total de: "+(df2.format(prim.weight_route()/10))+" litros");
 						WriteGeoJson.writeGraph(prim.getPrimVertex(), prim.getPrimEdges(), "AllPoints");
 					break;
+					}
+					case 3:{
+						Dijkstra dijkstra = new Dijkstra(graph);
+						//Ponto inicial
+						dijkstra.execute(graph.getVertexById(39));
+						//Ponto onde deseja chegar
+						LinkedList<Vertex> path = dijkstra.getPath(graph.getVertexById(14));
+						//Só para colocar um breakpoint
+						int i = 0;
+						break;
 					}
 				}
 			}catch (NullPointerException ex) {
