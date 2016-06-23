@@ -139,15 +139,13 @@ public class Graph<E>{
 		return v;
 	}
 	
-	public Vertex getVertexById(int id){				
-		return vertex.stream().filter(x -> x.getPoint().getId() == id).findFirst().get();
+	public Vertex getVertexById(int id){
+		Vertex returnVertex = null;
+		for (Vertex v : vertex){
+			if(v.getPoint().getId() == id){
+				returnVertex = v;
+			}
+		}
+		return returnVertex;
 	}
-	
-	/*
-	public Vertex findVertex(double lat, double lng){				
-		return vertex.stream().filter(x -> x.getPoint().getLat() == lat && x.getPoint().getLng() == lng).findFirst().get();
-	}
-	
-	
-	*/
 }
