@@ -91,13 +91,16 @@ public class Main {
 					break;
 					}
 					case 3:{
+						int from = InputDialog.readInt("ID de origem:\n");
+						int to = InputDialog.readInt("ID de destino:\n");
+						Vertex v1 = graph.getVertexById(from);
+						Vertex v2 = graph.getVertexById(to);
 						Dijkstra dijkstra = new Dijkstra(graph);
 						//Ponto inicial
-						dijkstra.execute(graph.getVertexById(39));
+						dijkstra.execute(v1);
 						//Ponto onde deseja chegar
-						LinkedList<Vertex> path = dijkstra.getPath(graph.getVertexById(14));
-						//Só para colocar um breakpoint
-						int i = 0;
+						LinkedList<Vertex> path = dijkstra.getPath(v2);						
+						System.out.println(path.toString());
 						break;
 					}
 				}

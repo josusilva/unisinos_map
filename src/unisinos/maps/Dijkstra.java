@@ -19,7 +19,6 @@ public class Dijkstra {
   private Map<Vertex, Integer> distance;
 
   public Dijkstra(Graph graph) {
-    // create a copy of the array so that we can operate on this array
     this.vertex = new ArrayList<Vertex>(graph.getVertex());
     this.edges = new ArrayList<Edge>(graph.getEdge());
   }
@@ -101,14 +100,14 @@ public class Dijkstra {
     }
   }
 
-  /*
-   * This method returns the path from the source to the selected target and
-   * NULL if no path exists
+  /* 
+   * Esse metodo retorna o path do target
+   * Se não existe retorna null
    */
   public LinkedList<Vertex> getPath(Vertex target) {
     LinkedList<Vertex> path = new LinkedList<Vertex>();
     Vertex step = target;
-    // check if a path exists
+    // Verifica se existe
     if (predecessors.get(step) == null) {
       return null;
     }
@@ -117,7 +116,7 @@ public class Dijkstra {
       step = predecessors.get(step);
       path.add(step);
     }
-    // Put it into the correct order
+    // Coloca na ordem correta
     Collections.reverse(path);
     return path;
   }
