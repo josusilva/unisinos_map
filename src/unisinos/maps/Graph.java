@@ -38,7 +38,8 @@ public class Graph<E>{
 			}
 		}
 		return false;
-	}
+	}	
+	
 	
 	public <E> void replaceEdge(Edge e, String dislocate){
 		edge.get(edge.indexOf(e)).setDislocate(dislocate);
@@ -127,15 +128,11 @@ public class Graph<E>{
 		return vertex.get(vertex.indexOf(e)).getPoint();
 	}
 	
-	public Vertex findVertex(double lat, double lng){
-		Vertex v = null;
-		
-		for (Vertex v1 : vertex) {
-			if(v1.getPoint().getLat() == lat && v1.getPoint().getLng() == lng){
-				v = v1;
-			}
-		}
-		
-		return v;
+	public Vertex findVertex(double lat, double lng){				
+		return vertex.stream().filter(x -> x.getPoint().getLat() == lat && x.getPoint().getLng() == lng).findFirst().get();
+	}
+	
+	public Vertex getVertexById(int id){				
+		return vertex.stream().filter(x -> x.getPoint().getId() == id).findFirst().get();
 	}
 }

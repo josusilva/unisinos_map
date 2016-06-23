@@ -83,6 +83,12 @@ public class Main {
 						System.out.println("Vai ser preciso um total de: "+(df2.format(prim.weight_route()/10))+" litros");
 					break;
 					}
+					case 3:{
+						 Dijkstra dijkstra = new Dijkstra(graph);
+						 dijkstra.findShortestPath(1, 52, null);
+						 dijkstra.optimalPath.printPath();						
+					break;
+					}
 				}
 			}catch (NullPointerException ex) {
             	JOptionPane.showMessageDialog(null, "Operação inválida", "Unisinos Maps", JOptionPane.INFORMATION_MESSAGE);
