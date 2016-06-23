@@ -1,5 +1,8 @@
 package unisinos.maps;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -47,8 +50,8 @@ public class Main {
 				}
 			}
 			
-			
 		}
+		
 		for (int i = 0; i < graph.getEdge().size(); i++){
 			double lat1 = ((Edge) graph.getEdge().get(i)).getVertex1().getPoint().getLat();
 			double lon1 = ((Edge) graph.getEdge().get(i)).getVertex1().getPoint().getLng();
@@ -57,6 +60,7 @@ public class Main {
 			double dist = DistanceCalculator.distance(lat1, lon1, lat2, lon2, "K");
 			((Edge) graph.getEdge().get(i)).setWeigth(dist*1000);
 		}
+		
 		int resp = -1;
 		while (resp != 0){
 			try{
@@ -75,18 +79,14 @@ public class Main {
 						for(int i = 0; i < graph.getEdge().size(); i++){
 							System.out.println(graph.getEdge().get(i).toString());
 						}
+						WriteGeoJson.writeGraph(graph.getVertex(), graph.getEdge(), "Graph");
 					break;
 					}
 					case 2:{
 						Prim prim = new Prim(graph);
 						prim.MSTPrim();
 						System.out.println("Vai ser preciso um total de: "+(df2.format(prim.weight_route()/10))+" litros");
-					break;
-					}
-					case 3:{
-						 Dijkstra dijkstra = new Dijkstra(graph);
-						 dijkstra.findShortestPath(1, 52, null);
-						 dijkstra.optimalPath.printPath();						
+						WriteGeoJson.writeGraph(prim.getPrimVertex(), prim.getPrimEdges(), "AllPoints");
 					break;
 					}
 				}

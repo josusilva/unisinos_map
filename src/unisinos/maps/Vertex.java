@@ -7,7 +7,7 @@ public class Vertex {
 	
 	private Point point;
 	private LinkedList<Vertex> adjacency;
-	private char color = 'w';		
+	private char color = 'w';
 	
 	public Vertex(Point point) {
 		this.point = point;
