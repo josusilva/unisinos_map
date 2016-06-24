@@ -107,6 +107,10 @@ public class Graph<E>{
 		return vertex;
 	}
 	
+	public void setVertex(LinkedList<Vertex> vertex){
+		this.vertex = vertex;
+	}
+	
 	public LinkedList<Edge> findEdges(Vertex v){
 		LinkedList<Edge> edges = new LinkedList();
 		for (int i=0; i<edge.size(); i++){

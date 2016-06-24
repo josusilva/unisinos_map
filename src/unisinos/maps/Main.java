@@ -129,21 +129,27 @@ public class Main {
 						switch (resp4){
 							case 1:{
 								Helper.nextPoints(v, graph, raio, "adm");
+								break;
 							}
 							case 2:{
 								Helper.nextPoints(v, graph, raio, "esporte");
+								break;
 							}
 							case 3:{
 								Helper.nextPoints(v, graph, raio, "auditorio");
+								break;
 							}
 							case 4:{
 								Helper.nextPoints(v, graph, raio, "comida");
+								break;
 							}
 							case 5:{
 								Helper.nextPoints(v, graph, raio, "banheiro");
+								break;
 							}
 							case 6:{
 								Helper.nextPoints(v, graph, raio, "onibus");
+								break;
 							}
 						} 	
 					}
