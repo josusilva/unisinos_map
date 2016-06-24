@@ -119,6 +119,17 @@ public class Graph<E>{
 		return edges;
 	}
 	
+	public Edge findEdges(Vertex v1, Vertex v2){
+		for (int i=0; i<edge.size(); i++){
+			if (edge.get(i).getVertex1().equals(v1) && edge.get(i).getVertex2().equals(v2)){
+				return edge.get(i);
+			}else if (edge.get(i).getVertex1().equals(v2) && edge.get(i).getVertex2().equals(v1)){
+				return edge.get(i);
+			}
+		}
+		return null;
+	}
+	
 	public String edgeValue(Edge e){
 		return edge.get(edge.indexOf(e)).getDislocate();
 	}

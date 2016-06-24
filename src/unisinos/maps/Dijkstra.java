@@ -58,6 +58,10 @@ public class Dijkstra {
           && edge.getVertex2().equals(target)) {
         return edge.getWeigth();
       }
+      if (edge.getVertex2().equals(node)
+              && edge.getVertex1().equals(target)) {
+            return edge.getWeigth();
+      }           
     }
     throw new RuntimeException("Should not happen");
   }
@@ -65,10 +69,14 @@ public class Dijkstra {
   private List<Vertex> getNeighbors(Vertex node) {
     List<Vertex> neighbors = new ArrayList<Vertex>();
     for (Edge edge : edges) {
-      if (edge.getVertex1().equals(node)
+      if (edge.getVertex1().getPoint().getId() == node.getPoint().getId()
           && !isSettled(edge.getVertex2())) {
         neighbors.add(edge.getVertex2());
       }
+      if (edge.getVertex2().getPoint().getId() == node.getPoint().getId()
+              && !isSettled(edge.getVertex1())) {
+            neighbors.add(edge.getVertex1());
+      }    
     }
     return neighbors;
   }
