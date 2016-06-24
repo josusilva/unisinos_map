@@ -43,9 +43,9 @@ public class Main {
 				}
 				else{
 					JsonNode prop = jsonNode.get("properties");
-					JsonNode array = geo.get("coordinates");
-					Vertex v1 = graph.findVertex(array.get(1).get(1).asDouble(), array.get(1).get(0).asDouble());
-					Vertex v2 = graph.findVertex(array.get(0).get(1).asDouble(), array.get(0).get(0).asDouble());
+					JsonNode array = geo.get("coordinates");					
+					Vertex v1 = graph.findVertex(array.get(0).get(1).asDouble(), array.get(0).get(0).asDouble()); 
+					Vertex v2 = graph.findVertex(array.get(1).get(1).asDouble(), array.get(1).get(0).asDouble());
 					//Edge edge = new Edge(v1, v2, prop.get("distance").asInt(), prop.get("deslocamento").asText());
 					graph.insertEdge(v1, v2, prop.get("deslocamento").asText());
 				}
