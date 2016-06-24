@@ -99,9 +99,53 @@ public class Main {
 						//Ponto inicial
 						dijkstra.execute(v1);
 						//Ponto onde deseja chegar
-						LinkedList<Vertex> path = dijkstra.getPath(v2);						
-						System.out.println(path.toString());
+						LinkedList<Vertex> path = dijkstra.getPath(v2);
+						
+						if (path == null){
+							System.out.println("Rota não gerada");
+						}else{
+							for (int i = 0; i < path.size(); i++ ){
+								System.out.println(path.get(i).toString());
+							}
+							Path edges = new Path(path, graph);
+							
+							edges.printEdges();
+							WriteGeoJson.writeGraph(path, edges.getEdges(), "PointToPoint");
+						}
+						
 						break;
+					}
+					case 4:{
+						int from = InputDialog.readInt("ID de origem:\n");
+						int raio = InputDialog.readInt("Raio de Busca:\n");
+						int resp4 = InputDialog.readInt("Tipo de Local Buscado:\n"
+								+ "[1]-adm\n"
+								+ "[2]-esporte\n"
+								+ "[3]-auditorio\n"
+								+ "[4]-comida\n"
+								+ "[5]-banheiro\n"
+								+ "[6]-onibus\n");
+						Vertex v = graph.getVertexById(from);
+						switch (resp4){
+							case 1:{
+								Helper.nextPoints(v, graph, raio, "adm");
+							}
+							case 2:{
+								Helper.nextPoints(v, graph, raio, "esporte");
+							}
+							case 3:{
+								Helper.nextPoints(v, graph, raio, "auditorio");
+							}
+							case 4:{
+								Helper.nextPoints(v, graph, raio, "comida");
+							}
+							case 5:{
+								Helper.nextPoints(v, graph, raio, "banheiro");
+							}
+							case 6:{
+								Helper.nextPoints(v, graph, raio, "onibus");
+							}
+						} 	
 					}
 				}
 			}catch (NullPointerException ex) {
